@@ -1,25 +1,29 @@
 var createError = require('http-errors');
 var express = require('express');
+var mongoose = require('mongoose');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+app.use('/users',usersRouter);
+// usersRouter(app);
+require('dotenv/config');
 
 var app = express();
-//middleware
-app.use('/posts', () =>{
-  console.log('middleware is running ');
-})
+
 //routes
 app.get('/',(req,res)=>{
   res.send('we are on hme');
 });
-app.get('/posts',(req,res)=>{
-  res.send('we are in hme');
-});
 
+//connected to db
+mongoose.connect(
+  process.env.DB_CONNECTION,
+  { useNewurlParser: true },
+ () => console.log('connected to DB!')
+);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
