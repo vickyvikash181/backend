@@ -6,7 +6,19 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 router.post('/',(req,res)=> {
-  console.log(req.body);
+  var user = new user({
+ title: req.body.title,
+ description: req.body.description
+  });
+//  user.Save()
+ 
+//  .if(data => {
+//     res.json(data);
+
+//  })
+//   .else(err => {
+//     res.json({message: err});
+//   });
 });
 
 module.exports = router;

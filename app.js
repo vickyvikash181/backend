@@ -1,19 +1,22 @@
 var createError = require('http-errors');
 var express = require('express');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-app.use('/users',usersRouter);
-// usersRouter(app);
+
 require('dotenv/config');
 
 var app = express();
-
+app.use(bodyParser.json());
 //routes
+app.use('/users',usersRouter);
+// usersRouter(app);
+
 app.get('/',(req,res)=>{
   res.send('we are on hme');
 });
