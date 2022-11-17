@@ -17,14 +17,19 @@ var app = express();
 app.use(cors());
 
 app.use(bodyParser.json());
+
 //routes
-app.use('api/users',usersRouter);
+app.use('/users',usersRouter);
 // usersRouter(app);
 
-app.get('/users',(req,res)=>{
-  res.send('we are on hme');
+app.get('/',(req,res) => {
+   
+  
+  res.send('we are in hme');
 });
 
+
+ 
 //connected to db
 mongoose.connect(
   process.env.DB_CONNECTION,
@@ -64,5 +69,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-app.listen(5000);
+app.listen(3001);
 module.exports = app;
