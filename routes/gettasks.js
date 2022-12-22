@@ -12,6 +12,8 @@ router.get('/', async function (req, res, next) {
   console.log("user");
   res.json(await User.find());
 });
+
+
   // console.log("error from users");
   
     // users.find({})
@@ -52,15 +54,19 @@ router.get('/', async function (req, res, next) {
 router.post('/', (req, res) => {
 
   console.log(req);
-  var User = new User({
+  var user = new User({
 
     // res.json({
     //   UserList: ["user 1","user 2"]
     // var jsonData = ({
     title: req.body.title,
-    description: req.body.description
+    description: req.body.description,
+
+   myday:false,
+   important:false
 
   });
+  
   console.log("........");
   console.log(user);
   user.save()

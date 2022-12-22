@@ -6,10 +6,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-
+// var MongoClient = require('mongodb').MongoClient;
+// var url = "mongodb://127.0.0.1:27017/";
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var gettasksRouter = require('./routes/gettasks');
+var addmydaytaskRouter = require('./routes/addmydaytask');
+var addimportanttaskRouter = require('./routes/addimportanttask');
+
+
 var cors = require('cors');
 require('dotenv/config');
 
@@ -19,7 +24,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //routes
-app.use('/users',usersRouter);
+// app.use('/gettasks',gettasksRouter);
+app.use('/myday',addmydaytaskRouter);
+app.use('/addimportanttask',addimportanttaskRouter);
 // usersRouter(app);
 
 app.get('/',(req,res) => {
@@ -29,13 +36,29 @@ app.get('/',(req,res) => {
 });
 
 
+
+// MongoClient.connect(url, function(err, db) {
  
+//   if (err) throw err;
+//   var dbo = db.db("mydb");
+//   var query = { title: "note" };
+//   dbo.collection("users").find(query).toArray(function(err, result) {
+//     if (err) throw err;
+//     console.log(result);
+//     db.close();
+    
+//   });
+// });
+
+
+
 //connected to db
 mongoose.connect(
   process.env.DB_CONNECTION,
   { useNewurlParser: true },
  () => console.log('connected to DB!')
 );
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -47,10 +70,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-
-
+app.use('/gettasks', gettasksRouter);
+app.use('/myday',addmydaytaskRouter);
+app.use('/addimportanttask',addimportanttaskRouter);
 
 
 
