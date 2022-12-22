@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 //routes
 // app.use('/gettasks',gettasksRouter);
 app.use('/myday',addmydaytaskRouter);
-app.use('/addimportanttask',addimportanttaskRouter);
+app.use('/important',addimportanttaskRouter);
 // usersRouter(app);
 
 app.get('/',(req,res) => {
@@ -34,22 +34,6 @@ app.get('/',(req,res) => {
   
   res.send('we are in hme');
 });
-
-
-
-// MongoClient.connect(url, function(err, db) {
- 
-//   if (err) throw err;
-//   var dbo = db.db("mydb");
-//   var query = { title: "note" };
-//   dbo.collection("users").find(query).toArray(function(err, result) {
-//     if (err) throw err;
-//     console.log(result);
-//     db.close();
-    
-//   });
-// });
-
 
 
 //connected to db
@@ -72,7 +56,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/gettasks', gettasksRouter);
 app.use('/myday',addmydaytaskRouter);
-app.use('/addimportanttask',addimportanttaskRouter);
+app.use('/important',addimportanttaskRouter);
 
 
 

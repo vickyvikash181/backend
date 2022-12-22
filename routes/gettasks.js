@@ -13,53 +13,12 @@ router.get('/', async function (req, res, next) {
   res.json(await User.find());
 });
 
-
-  // console.log("error from users");
-  
-    // users.find({})
-
-    //   .exec(async function (err, users) {
-
-    //     if (err) {
-    //       console.log("error in users")
-
-    //     } else {
-    //       console.log("abcd");
-       
-
-    //     }
-
-    //   })
-
-
-
-
-
-
-// app.listen(PORT, function(err){
-//   if (err) console.log(err);
-//   console.log("Server listening on PORT", PORT);
-// });
-
-
-
-
-
-
-//   db.collections.find({ "title":newNote,
-// "description":newNote}) ;
-
-
-
 router.post('/', (req, res) => {
 
   console.log(req);
   var user = new User({
 
-    // res.json({
-    //   UserList: ["user 1","user 2"]
-    // var jsonData = ({
-    title: req.body.title,
+   title: req.body.title,
     description: req.body.description,
 
    myday:false,

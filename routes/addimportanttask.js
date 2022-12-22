@@ -7,26 +7,23 @@ var User = require('../models/User');
 /* GET users listing. */
 // 
 
-
 router.get('/', async function (req, res, next) {
-  console.log("user");
+  console.log("insidegetimportanttasks");
   res.json(await User.find({important:true}));
 });
 
-
-
-
 router.post('/', (req, res) => {
 
-  console.log(req);
+  console.log("inside adding important task");
   var user = new User({
 
     
     title: req.body.title,
     description: req.body.description,
 
-   myday:false,
-   important:true
+   
+   important:true,
+   myday:false
 
   });
   
@@ -45,8 +42,6 @@ router.post('/', (req, res) => {
       console.log(err);
       res.json({ message: err });
     });
-
-
 
 });
 
